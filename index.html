@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMA Negeri 1 Nusantara - Cerdas, Berkarakter & Berdaya Saing</title>
+    
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap Icons CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        :root {
+            --primary: #1e3a8a;       /* Navy Blue */
+            --primary-light: #2563eb; /* Royal Blue */
+            --secondary: #f59e0b;     /* Gold Accent */
+            --dark: #0f172a;          /* Dark Text */
+            --light: #f8fafc;         /* Background Light */
+            --gray: #64748b;          /* Text Muted */
+            --white: #ffffff;
+            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--dark);
+            background-color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Container Standard */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Section Title Styling */
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-subtitle {
+            color: var(--secondary);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: var(--primary);
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--secondary);
+            border-radius: 2px;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--primary);
+        }
+
+        .logo-icon {
+            font-size: 1.8rem;
+            color: var(--secondary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            font-size: 0.95rem;
+            color: var(--dark);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary-light);
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--primary);
+        }
+
+        .hero {
+            padding-top: 140px;
+            padding-bottom: 80px;
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.95), rgba(37, 99, 235, 0.85)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1200&auto=format&fit=crop') center/cover;
+            color: var(--white);
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-content {
+            max-width: 650px;
+        }
+
+        .hero-tag {
+            background-color: rgba(245, 158, 11, 0.2);
+            color: var(--secondary);
+            border: 1px solid var(--secondary);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .hero-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .hero-desc {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: var(--secondary);
+            color: var(--dark);
+        }
+
+        .btn-primary:hover {
+            background-color: #d97706;
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            border: 2px solid var(--white);
+            color: var(--white);
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--white);
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .profile {
+            padding: 90px 0;
+            background-color: var(--white);
+        }
+
+        .welcome-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 40px;
+            align-items: center;
+            margin-bottom: 70px;
+        }
+
+        .principal-img-box {
+            position: relative;
+            text-align: center;
+        }
+
+        .principal-img {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            border: 4px solid var(--white);
+        }
+
+        .principal-badge {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 8px 15px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 10px;
+            display: inline-block;
+        }
+
+        .welcome-text h3 {
+            color: var(--primary);
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+        }
+
+        .quote-box {
+            background-color: var(--light);
+            border-left: 4px solid var(--secondary);
+            padding: 15px 20px;
+            margin: 20px 0;
+            font-style: italic;
+            color: var(--gray);
+            border-radius: 0 8px 8px 0;
+        }
+
+        .vision-mission-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .vm-card {
+            background: var(--light);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            border-top: 4px solid var(--primary);
+            transition: var(--transition);
+        }
+
+        .vm-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .vm-card h4 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .vm-card h4 i {
+            color: var(--secondary);
+        }
+
+        .vm-card ul {
+            margin-top: 10px;
+        }
+
+        .vm-card li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 10px;
+            color: var(--gray);
+        }
+
+        .vm-card li::before {
+            content: '•';
+            color: var(--secondary);
+            font-weight: bold;
+            font-size: 1.2rem;
+            position: absolute;
+            left: 0;
+            top: -2px;
+        }
+
+        .stats {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 60px 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+
+        .stat-item i {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.95rem;
+            opacity: 0.8;
+        }
+
+        .majors {
+            padding: 90px 0;
+        }
+
+        .majors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .major-card {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .major-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .major-icon {
+            width: 70px;
+            height: 70px;
+            background-color: rgba(37, 99, 235, 0.1);
+            color: var(--primary-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 20px;
+            transition: var(--transition);
+        }
+
+        .major-card:hover .major-icon {
+            background-color: var(--primary-light);
+            color: var(--white);
+        }
+
+        .major-title {
+            font-size: 1.25rem;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+
+        .major-desc {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .facilities {
+            padding: 90px 0;
+            background-color: var(--white);
+        }
+
+        .facility-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+        }
+
+        .facility-card {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            background: var(--light);
+            transition: var(--transition);
+        }
+
+        .facility-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .facility-img {
+            height: 180px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .facility-body {
+            padding: 20px;
+        }
+
+        .facility-title {
+            font-size: 1.1rem;
+            color: var(--primary);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .facility-title i {
+            color: var(--secondary);
+        }
+
+        .facility-desc {
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+
+        .contact {
+            padding: 90px 0;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 40px;
+        }
+
+        .contact-info {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 40px;
+            border-radius: 12px;
+        }
+
+        .contact-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .contact-item i {
+            font-size: 1.4rem;
+            color: var(--secondary);
+        }
+
+        .contact-item p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .contact-form {
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: var(--dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-light);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .footer {
+            background-color: var(--dark);
+            color: var(--white);
+            padding: 60px 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+            position: relative;
+        }
+
+        .footer-col p {
+            color: var(--gray);
+            font-size: 0.9rem;
+            line-height: 1.8;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--gray);
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .social-icon {
+            width: 38px;
+            height: 38px;
+            background-color: rgba(255,255,255,0.1);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .social-icon:hover {
+            background-color: var(--secondary);
+            color: var(--dark);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: var(--gray);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 992px) {
+            .welcome-grid, .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            .principal-img-box {
+                margin-bottom: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+            
+            .nav-links {
+                position: absolute;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background-color: var(--white);
+                flex-direction: column;
+                align-items: center;
+                padding-top: 40px;
+                gap: 30px;
+                transition: var(--transition);
+                box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .hero-title {
+                font-size: 2.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="container navbar">
+            <a href="#" class="logo">
+                <i class="bi bi-mortarboard-fill logo-icon"></i>
+                <span>SMAN 1 Nusantara</span>
+            </a>
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#beranda" class="nav-link active">Beranda</a></li>
+                <li><a href="#profil" class="nav-link">Profil</a></li>
+                <li><a href="#jurusan" class="nav-link">Jurusan</a></li>
+                <li><a href="#fasilitas" class="nav-link">Fasilitas</a></li>
+                <li><a href="#kontak" class="nav-link">Kontak</a></li>
+            </ul>
+
+            <div class="hamburger" id="hamburger">
+                <i class="bi bi-list"></i>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero" id="beranda">
+        <div class="container">
+            <div class="hero-content">
+                <span class="hero-tag"><i class="bi bi-award"></i> Akreditasi A (Unggul)</span>
+                <h1 class="hero-title">Membentuk Generasi Cerdas, Berkarakter & Berdaya Saing</h1>
+                <p class="hero-desc">SMA Negeri 1 Nusantara berkomitmen menyelenggarakan pendidikan berkualitas tinggi dengan memadukan keunggulan akademis, teknologi, dan pembentukan karakter mulia.</p>
+                <div class="hero-btns">
+                    <a href="#profil" class="btn btn-primary"><i class="bi bi-arrow-right-circle"></i> Lihat Profil</a>
+                    <a href="#kontak" class="btn btn-outline"><i class="bi bi-envelope"></i> Pendaftaran</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="profile" id="profil">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Tentang Kami</span>
+                <h2 class="section-title">Profil Sekolah</h2>
+            </div>
+
+            <div class="welcome-grid">
+                <div class="principal-img-box">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=400&auto=format&fit=crop" alt="Foto Kepala Sekolah" class="principal-img">
+                    <div class="principal-badge">Dr. H. Ahmad Wijaya, M.Pd.</div>
+                </div>
+                <div class="welcome-text">
+                    <h3>Sambutan Kepala Sekolah</h3>
+                    <p>Selamat datang di website resmi SMA Negeri 1 Nusantara. Kami merasa bangga dapat menyajikan informasi sekolah ini secara transparan dan mudah diakses oleh masyarakat umum, siswa, serta orang tua.</p>
+                    
+                    <div class="quote-box">
+                        "Pendidikan bukan sekadar mengisi wadah, melainkan menyalakan api pencerahan bagi masa depan generasi bangsa."
+                    </div>
+                    
+                    <p>Kami terus berupaya meningkatkan mutu kurikulum, fasilitas, serta ekstra-kurikuler guna mencetak lulusan yang tidak hanya unggul secara akademis tetapi juga memiliki integritas moral yang kokoh.</p>
+                </div>
+            </div>
+
+            <!-- Visi & Misi Cards -->
+            <div class="vision-mission-grid">
+                <div class="vm-card">
+                    <h4><i class="bi bi-eye-fill"></i> Visi Sekolah</h4>
+                    <p>Menjadi lembaga pendidikan terdepan yang menghasilkan sumber daya manusia berprestasi, berwawasan global, dan berlandaskan iman dan takwa pada tahun 2030.</p>
+                </div>
+                <div class="vm-card">
+                    <h4><i class="bi bi-bullseye"></i> Misi Sekolah</h4>
+                    <ul>
+                        <li>Menyelenggarakan pembelajaran berbasis ICT yang inovatif dan interaktif.</li>
+                        <li>Mengembangkan bakat dan minat siswa melalui kegiatan ekstrakurikuler yang beragam.</li>
+                        <li>Menanamkan nilai-nilai karakter luhur dan budaya literasi di lingkungan sekolah.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <i class="bi bi-people-fill"></i>
+                    <span class="stat-number">1,250+</span>
+                    <span class="stat-label">Siswa Aktif</span>
+                </div>
+                <div class="stat-item">
+                    <i class="bi bi-person-badge-fill"></i>
+                    <span class="stat-number">75</span>
+                    <span class="stat-label">Guru & Staf</span>
+                </div>
+                <div class="stat-item">
+                    <i class="bi bi-trophy-fill"></i>
+                    <span class="stat-number">24+</span>
+                    <span class="stat-label">Ekstrakurikuler</span>
+                </div>
+                <div class="stat-item">
+                    <i class="bi bi-check-circle-fill"></i>
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Kelulusan</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="majors" id="jurusan">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Program Keahlian</span>
+                <h2 class="section-title">Pilihan Jurusan</h2>
+            </div>
+
+            <div class="majors-grid">
+                <div class="major-card">
+                    <div class="major-icon">
+                        <i class="bi bi-calculator-fill"></i>
+                    </div>
+                    <h3 class="major-title">MIPA (IPA)</h3>
+                    <p class="major-desc">Fokus pada penguasaan konsep matematika dan sains murni seperti Fisika, Kimia, dan Biologi untuk persiapan jenjang rekayasa dan medis.</p>
+                </div>
+
+                <div class="major-card">
+                    <div class="major-icon">
+                        <i class="bi bi-globe-americas"></i>
+                    </div>
+                    <h3 class="major-title">IPS</h3>
+                    <p class="major-desc">Mempelajari dinamika sosial, ekonomi, geografi, dan sejarah untuk melatih kemampuan analisis kemasyarakatan dan bisnis.</p>
+                </div>
+
+                <div class="major-card">
+                    <div class="major-icon">
+                        <i class="bi bi-translate"></i>
+                    </div>
+                    <h3 class="major-title">Bahasa & Budaya</h3>
+                    <p class="major-desc">Mengembangkan keahlian dalam bahasa asing, sastra, dan studi budaya global untuk menyiapkan lulusan yang cakap dalam komunikasi internasional.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="facilities" id="fasilitas">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Sarana & Prasarana</span>
+                <h2 class="section-title">Fasilitas Sekolah</h2>
+            </div>
+
+            <div class="facility-grid">
+                <div class="facility-card">
+                    <img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&w=500&auto=format&fit=crop" alt="Perpustakaan" class="facility-img">
+                    <div class="facility-body">
+                        <h3 class="facility-title"><i class="bi bi-book"></i> Perpustakaan Digital</h3>
+                        <p class="facility-desc">Koleksi ribuan buku fisik dan e-book dengan ruang baca yang nyaman dan ber-AC.</p>
+                    </div>
+                </div>
+
+                <div class="facility-card">
+                    <img src="https://images.unsplash.com/photo-1562774053-701939374585?q=80&w=500&auto=format&fit=crop" alt="Laboratorium Komputer" class="facility-img">
+                    <div class="facility-body">
+                        <h3 class="facility-title"><i class="bi bi-laptop"></i> Lab Komputer</h3>
+                        <p class="facility-desc">Perangkat PC modern berkecepatan tinggi mendukung pembelajaran IT dan coding.</p>
+                    </div>
+                </div>
+
+                <div class="facility-card">
+                    <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=500&auto=format&fit=crop" alt="Lapangan Olahraga" class="facility-img">
+                    <div class="facility-body">
+                        <h3 class="facility-title"><i class="bi bi-dribbble"></i> Lapangan Serbaguna</h3>
+                        <p class="facility-desc">Fasilitas olahraga basket, futsal, dan voli standar nasional untuk aktivitas siswa.</p>
+                    </div>
+                </div>
+
+                <div class="facility-card">
+                    <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=500&auto=format&fit=crop" alt="Laboratorium Sains" class="facility-img">
+                    <div class="facility-body">
+                        <h3 class="facility-title"><i class="bi bi-beaker"></i> Lab Sains Lengkap</h3>
+                        <p class="facility-desc">Laboratorium Kimia, Fisika, dan Biologi dengan alat praktikum yang aman dan mutakhir.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="kontak">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Hubungi Kami</span>
+                <h2 class="section-title">Kontak & Informasi</h2>
+            </div>
+
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Informasi Sekolah</h3>
+                    
+                    <div class="contact-item">
+                        <i class="bi bi-geo-alt-fill"></i>
+                        <p>Jl. Pendidikan No. 45, Kecamatan Nusantara, Kota Merdeka, 12345</p>
+                    </div>
+
+                    <div class="contact-item">
+                        <i class="bi bi-telephone-fill"></i>
+                        <p>(021) 555-0192 / +62 812-3456-7890</p>
+                    </div>
+
+                    <div class="contact-item">
+                        <i class="bi bi-envelope-fill"></i>
+                        <p>info@sman1nusantara.sch.id</p>
+                    </div>
+
+                    <div class="contact-item">
+                        <i class="bi bi-clock-fill"></i>
+                        <p>Senin - Jumat: 07.00 - 15.30 WIB</p>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <form id="schoolForm">
+                        <div class="form-group">
+                            <label for="name">Nama Lengkap</label>
+                            <input type="text" id="name" class="form-control" placeholder="Masukkan nama Anda" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" class="form-control" placeholder="nama@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Pesan / Pertanyaan</label>
+                            <textarea id="message" class="form-control" placeholder="Tuliskan pesan Anda di sini..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
+                            <i class="bi bi-send-fill"></i> Kirim Pesan
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>SMAN 1 Nusantara</h4>
+                    <p>Mewujudkan pendidikan bermutu, berkarakter, dan berdaya saing global untuk generasi penerus bangsa.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-icon"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="social-icon"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="bi bi-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Tautan Cepat</h4>
+                    <ul class="footer-links">
+                        <li><a href="#beranda">Beranda</a></li>
+                        <li><a href="#profil">Profil Sekolah</a></li>
+                        <li><a href="#jurusan">Program Keahlian</a></li>
+                        <li><a href="#fasilitas">Fasilitas</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Ekskul</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Pramuka & PMR</a></li>
+                        <li><a href="#">Paskibra</a></li>
+                        <li><a href="#">Klub Coding & Robotik</a></li>
+                        <li><a href="#">Basket & Futsal</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 SMAN 1 Nusantara. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Toggle Navigation Mobile Menu
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            // Ganti ikon menu
+            const icon = hamburger.querySelector('i');
+            if(navLinks.classList.contains('active')) {
+                icon.classList.remove('bi-list');
+                icon.classList.add('bi-x-lg');
+            } else {
+                icon.classList.remove('bi-x-lg');
+                icon.classList.add('bi-list');
+            }
+        });
+
+        // Close menu saat tautan diklik
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                const icon = hamburger.querySelector('i');
+                if (icon) {
+                    icon.classList.remove('bi-x-lg');
+                    icon.classList.add('bi-list');
+                }
+            });
+        });
+
+        // Form Submission Interactivity
+        const form = document.getElementById('schoolForm');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            alert(`Terima kasih ${name}, pesan Anda telah berhasil terkirim! Kami akan segera menghubungi Anda.`);
+            form.reset();
+        });
+    </script>
+</body>
+</html>
