@@ -2,7 +2,7 @@
 
 Proyek ini adalah contoh halaman web statis satu halaman (*single-page website*) yang dibuat untuk tujuan edukasi[cite: 1]. Tujuannya adalah mendemonstrasikan bagaimana **HTML**, **CSS**, dan sedikit **JavaScript** dapat dikombinasikan menjadi sebuah situs web profil institusi (sekolah) yang modern, responsif, dan interaktif[cite: 1].
 
-Lazily generated with Gemini Auto Low ([]()).
+Lazily generated with Gemini Auto Low.
 
 ---
 
